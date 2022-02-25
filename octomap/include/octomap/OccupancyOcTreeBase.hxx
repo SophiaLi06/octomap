@@ -36,6 +36,9 @@
 
 #include <octomap/MCTables.h>
 
+/* Minghao */
+#include <iostream>
+
 namespace octomap {
 
   template <class NODE>
@@ -195,6 +198,7 @@ namespace octomap {
 #endif
             {
               free_cells.insert(keyray->begin(), keyray->end());
+              std::cout << "free_cells 1" << std::endl;
             }
           }
           // occupied endpoint
@@ -205,6 +209,7 @@ namespace octomap {
 #endif
             {
               occupied_cells.insert(key);
+              std::cout << "occupied_cells 1" << std::endl;
             }
           }
         } else { // user set a maxrange and length is above
@@ -216,6 +221,7 @@ namespace octomap {
 #endif
             {
               free_cells.insert(keyray->begin(), keyray->end());
+              std::cout << "free_cells 2" << std::endl;
             }
           }
         } // end if maxrange
@@ -231,6 +237,7 @@ namespace octomap {
 #endif
             {
               occupied_cells.insert(key);
+              std::cout << "occupied_cells 2" << std::endl;
             }
           }
         } // end if in BBX and not maxrange
@@ -251,6 +258,7 @@ namespace octomap {
 #endif
               {
                 free_cells.insert(*it);
+                std::cout << "free_cells 3" << std::endl;
               }
             }
             else break;
