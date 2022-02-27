@@ -38,6 +38,8 @@
 
 /* Minghao */
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 namespace octomap {
 
@@ -180,6 +182,8 @@ namespace octomap {
     omp_set_num_threads(this->keyrays.size());
     #pragma omp parallel for schedule(guided)
 #endif
+    srand (time(NULL));
+    int randnum = rand() % 10;
     for (int i = 0; i < (int)scan.size(); ++i) {
       const point3d& p = scan[i];
       unsigned threadIdx = 0;
@@ -198,16 +202,24 @@ namespace octomap {
 #endif
             {
               free_cells.insert(keyray->begin(), keyray->end());
-              std::cout << "free_cells:" << std::endl;
-              size_t inc = 0;
-              auto it = keyray->begin();
-              while(inc < keyray->size()){
-                OcTreeKey temp_key = *it;
-                point3d coord = this->keyToCoord(temp_key);
-                std::cout << coord << std::endl;
-                inc += 10;
-                it += 10;
+              if (randnum == 0){
+                std::cout << "free_cells:" << std::endl;
+                for(KeyRay::iterator it=keyray->begin(); it != keyray->end(); ++it){
+                  OcTreeKey temp_key = *it;
+                  point3d coord = this->keyToCoord(temp_key);
+                  std::cout << coord << std::endl;
+                }
               }
+              // std::cout << "free_cells:" << std::endl;
+              // size_t inc = 0;
+              // auto it = keyray->begin();
+              // while(inc < keyray->size()){
+              //   OcTreeKey temp_key = *it;
+              //   point3d coord = this->keyToCoord(temp_key);
+              //   std::cout << coord << std::endl;
+              //   inc += 10;
+              //   it += 10;
+              // }
             }
           }
           // occupied endpoint
@@ -218,9 +230,14 @@ namespace octomap {
 #endif
             {
               occupied_cells.insert(key);
-              std::cout << "occupied_cells:" << std::endl;
-              point3d coord = this->keyToCoord(key);
-              std::cout << coord << std::endl;
+              if(randnum == 0){
+                std::cout << "occupied_cells:" << std::endl;
+                point3d coord = this->keyToCoord(key);
+                std::cout << coord << std::endl;
+              }
+              // std::cout << "occupied_cells:" << std::endl;
+              // point3d coord = this->keyToCoord(key);
+              // std::cout << coord << std::endl;
             }
           }
         } else { // user set a maxrange and length is above
