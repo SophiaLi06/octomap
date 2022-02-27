@@ -207,7 +207,8 @@ namespace octomap {
                 for(KeyRay::iterator it=keyray->begin(); it != keyray->end(); ++it){
                   OcTreeKey temp_key = *it;
                   point3d coord = this->keyToCoord(temp_key);
-                  std::cout << coord << std::endl;
+                  std::cout << "key: " << temp_key << std::endl;
+                  std::cout << "coord: " << coord << std::endl;
                 }
               }
               // std::cout << "free_cells:" << std::endl;
@@ -233,7 +234,8 @@ namespace octomap {
               if(randnum == 0){
                 std::cout << "occupied_cells:" << std::endl;
                 point3d coord = this->keyToCoord(key);
-                std::cout << coord << std::endl;
+                std::cout << "key: " << key << std::endl;
+                std::cout << "coord: " << coord << std::endl;
               }
               // std::cout << "occupied_cells:" << std::endl;
               // point3d coord = this->keyToCoord(key);
