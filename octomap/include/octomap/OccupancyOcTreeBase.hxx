@@ -198,7 +198,16 @@ namespace octomap {
 #endif
             {
               free_cells.insert(keyray->begin(), keyray->end());
-              std::cout << "free_cells 1" << std::endl;
+              std::cout << "free_cells:" << std::endl;
+              size_t inc = 0;
+              auto it = keyray->begin();
+              while(inc < keyray->size()){
+                OcTreeKey temp_key = *it;
+                point3d coord = this->keyToCoord(temp_key);
+                std::cout << coord << std::endl;
+                inc += 10;
+                it += 10;
+              }
             }
           }
           // occupied endpoint
@@ -209,7 +218,9 @@ namespace octomap {
 #endif
             {
               occupied_cells.insert(key);
-              std::cout << "occupied_cells 1" << std::endl;
+              std::cout << "occupied_cells:" << std::endl;
+              point3d coord = this->keyToCoord(key);
+              std::cout << coord << std::endl;
             }
           }
         } else { // user set a maxrange and length is above
@@ -221,7 +232,7 @@ namespace octomap {
 #endif
             {
               free_cells.insert(keyray->begin(), keyray->end());
-              std::cout << "free_cells 2" << std::endl;
+              std::cout << "!!!free_cells 2" << std::endl;
             }
           }
         } // end if maxrange
@@ -237,7 +248,7 @@ namespace octomap {
 #endif
             {
               occupied_cells.insert(key);
-              std::cout << "occupied_cells 2" << std::endl;
+              std::cout << "!!!occupied_cells 2" << std::endl;
             }
           }
         } // end if in BBX and not maxrange
@@ -258,7 +269,7 @@ namespace octomap {
 #endif
               {
                 free_cells.insert(*it);
-                std::cout << "free_cells 3" << std::endl;
+                std::cout << "!!!free_cells 3" << std::endl;
               }
             }
             else break;
