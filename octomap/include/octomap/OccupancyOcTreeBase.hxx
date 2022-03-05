@@ -182,8 +182,8 @@ namespace octomap {
     omp_set_num_threads(this->keyrays.size());
     #pragma omp parallel for schedule(guided)
 #endif
-    srand (time(NULL));
-    int randnum = rand() % 10;
+    //srand (time(NULL));
+    //int randnum = rand() % 10;
     for (int i = 0; i < (int)scan.size(); ++i) {
       const point3d& p = scan[i];
       unsigned threadIdx = 0;
