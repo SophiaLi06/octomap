@@ -99,8 +99,8 @@ namespace octomap {
 
     // insert data into tree  -----------------------
     // Minghao: printing the size of free_cells and occupied_cells
-    std::cout << "free_cells size: " << free_cells.size() << " " << free_cells.end()-free_cells.begin() << std::endl;
-    std::cout << "occupied_cells size: " << occupied_cells.size() << " " << occupied_cells.end()-occupied_cells.begin() << std::endl;
+    std::cout << "free_cells size: " << free_cells.size() << std::endl;
+    std::cout << "occupied_cells size: " << occupied_cells.size() << std::endl;
     for (KeySet::iterator it = free_cells.begin(); it != free_cells.end(); ++it) {
       updateNode(*it, false, lazy_eval);
     }
