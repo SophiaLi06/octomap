@@ -98,6 +98,9 @@ namespace octomap {
       computeUpdate(scan, sensor_origin, free_cells, occupied_cells, maxrange);
 
     // insert data into tree  -----------------------
+    // Minghao: printing the size of free_cells and occupied_cells
+    std::cout << "free_cells size: " << free_cells.size() << " " << free_cells.end()-free_cells.begin() << std::endl;
+    std::cout << "occupied_cells size: " << occupied_cells.size() << " " << occupied_cells.end()-occupied_cells.begin() << std::endl;
     for (KeySet::iterator it = free_cells.begin(); it != free_cells.end(); ++it) {
       updateNode(*it, false, lazy_eval);
     }
@@ -202,12 +205,12 @@ namespace octomap {
 #endif
             {
               free_cells.insert(keyray->begin(), keyray->end());
-              std::cout << "free_cells:" << std::endl;
-              for(KeyRay::iterator it=keyray->begin(); it != keyray->end(); ++it){
-                OcTreeKey temp_key = *it;
-                point3d coord = this->keyToCoord(temp_key);
-                std::cout << coord << std::endl;
-              }
+              // std::cout << "free_cells:" << std::endl;
+              // for(KeyRay::iterator it=keyray->begin(); it != keyray->end(); ++it){
+              //   OcTreeKey temp_key = *it;
+              //   point3d coord = this->keyToCoord(temp_key);
+              //   std::cout << coord << std::endl;
+              // }
               // if (randnum == 0){
               //   std::cout << "free_cells:" << std::endl;
               //   for(KeyRay::iterator it=keyray->begin(); it != keyray->end(); ++it){
@@ -243,9 +246,9 @@ namespace octomap {
               //   std::cout << "key: " << int(key[0]) << " " << int(key[1]) << " " << int(key[2]) << std::endl;
               //   std::cout << "coord: " << coord << std::endl;
               // }
-              std::cout << "occupied_cells:" << std::endl;
-              point3d coord = this->keyToCoord(key);
-              std::cout << coord << std::endl;
+              // std::cout << "occupied_cells:" << std::endl;
+              // point3d coord = this->keyToCoord(key);
+              // std::cout << coord << std::endl;
             }
           }
         } else { // user set a maxrange and length is above
